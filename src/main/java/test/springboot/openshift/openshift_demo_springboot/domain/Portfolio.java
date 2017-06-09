@@ -7,31 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
-@Component
+@Entity
 public class Portfolio {
 
 	private String name;
-	
-	@Autowired
-	private StockMarket stockMarket;
-
-	private List<Stock> stocks = new ArrayList<Stock>();
-
-	/*
-	 * this method gets the market value for each stock, sums it up and returns
-	 * the total value of the portfolio.
-	 */
-	public Double getTotalValue() {
-		Double value = 0.0;
-		/*for (Stock stock : this.stocks) {
-			value += (stockMarket.getPrice(stock.getName()) * stock
-					.getQuantity());
-		}*/
 		
-		value = stockMarket.getPrice("");
-		return value;
-	}
+	@OnetoMany
+	private List<Stock> stocks;
 
+	
 	public String getName() {
 		return name;
 	}
