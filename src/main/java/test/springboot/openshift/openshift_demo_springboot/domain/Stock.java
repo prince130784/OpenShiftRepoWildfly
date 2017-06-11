@@ -1,12 +1,33 @@
 package test.springboot.openshift.openshift_demo_springboot.domain;
 
-@Entity
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name="TBL_STOCK")
 public class Stock {
 
+	@Id
+	@Column(name="STOCK_ID")
+	private Long stockId;
+
+	@Column(name="STOCK_NAME")
 	private String name;
+
+	@Column(name="STOCK_QTY")
 	private int quantity;
-	private int price;
-	
+
+	@Column(name="STOCK_PRICE")
+	private Double price;
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -23,12 +44,5 @@ public class Stock {
 		this.quantity = quantity;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
+	
 }

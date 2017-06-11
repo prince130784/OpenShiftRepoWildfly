@@ -1,20 +1,31 @@
 package test.springboot.openshift.openshift_demo_springboot.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 
-@Entity
+@Entity(name="TBL_PORTFOLIO")
 public class Portfolio {
 
+	@Id
+	@Column(name="PORTFOLIO_ID")
+	private Long portfolioId;
+	
+	@Column(name="PORTFOLIO_NAME")
 	private String name;
 		
-	@OnetoMany
-	private List<Stock> stocks;
+	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="portfolio", cascade=CascadeType.PERSIST)
+	private Set<PortfolioStocks> stocks;*/
 
+	@ElementCollection
+	@CollectionTable(name="TBL_PORTFOLIO_STOCKS",  joinColumns=@JoinColumn(referencedColumnName="portfolioId"))
+	private Set<PortfolioStocks> portfolioStocks;
 	
 	public String getName() {
 		return name;
@@ -24,23 +35,5 @@ public class Portfolio {
 		this.name = name;
 	}
 
-	public List<Stock> getStocks() {
-		return stocks;
-	}
-
-	public void setStocks(List<Stock> stocks) {
-		this.stocks = stocks;
-	}
-
-	public void addStock(Stock stock) {
-		stocks.add(stock);
-	}
-
-	public StockMarket getStockMarket() {
-		return stockMarket;
-	}
-
-	public void setStockMarket(StockMarket stockMarket) {
-		this.stockMarket = stockMarket;
-	}
+	
 }
