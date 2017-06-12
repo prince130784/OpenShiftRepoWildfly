@@ -6,6 +6,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,9 +27,10 @@ public class Portfolio {
 	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="portfolio", cascade=CascadeType.PERSIST)
 	private Set<PortfolioStocks> stocks;*/
 
-	/*@ElementCollection
-	@CollectionTable(name="TBL_PORTFOLIO_STOCKS",  joinColumns=@JoinColumn(referencedColumnName="PORTFOLIO_ID"))
-	private Set<PortfolioStocks> portfolioStocks;*/
+	@ElementCollection
+	@CollectionTable(name="TBL_PORTFOLIO_STOCKS", foreignKey=@ForeignKey(name="TBL_PORTFOLIO_PORFOLIO_ID_FK"), 
+	joinColumns=@JoinColumn(name="PORFOLIO_REF_ID" , referencedColumnName="PORTFOLIO_ID"))
+	private Set<PortfolioStocks> portfolioStocks;
 	
 	public String getName() {
 		return name;
