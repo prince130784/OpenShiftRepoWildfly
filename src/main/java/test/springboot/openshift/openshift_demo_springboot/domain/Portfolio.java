@@ -1,5 +1,7 @@
 package test.springboot.openshift.openshift_demo_springboot.domain;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -30,7 +32,7 @@ public class Portfolio {
 	@ElementCollection
 	@CollectionTable(name="TBL_PORTFOLIO_STOCKS", foreignKey=@ForeignKey(name="TBL_PORTFOLIO_PORFOLIO_ID_FK"), 
 	joinColumns=@JoinColumn(name="PORFOLIO_REF_ID" , referencedColumnName="PORTFOLIO_ID"))
-	private Set<PortfolioStocks> portfolioStocks;
+	private Collection<PortfolioStocks> portfolioStocks;
 	
 	public String getName() {
 		return name;
@@ -38,6 +40,14 @@ public class Portfolio {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<PortfolioStocks> getPortfolioStocks() {
+		return new HashSet<PortfolioStocks>(portfolioStocks);
+	}
+
+	public void setPortfolioStocks(Collection<PortfolioStocks> portfolioStocks) {
+		this.portfolioStocks = portfolioStocks;
 	}
 
 	
