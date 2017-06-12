@@ -10,6 +10,20 @@ import javax.persistence.TemporalType;
 @Embeddable
 public class PortfolioStocks {
 
+	
+	/*@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="PORTFOLIO_STOCK_ID")
+	private Long portfolioStockId;*/
+	
+	/*@ManyToOne	
+	private Portfolio portfolio;*/
+	
+	
+	
+	@Column(name="STOCK_REF_ID")
+	private Long  stockId;
+	
 	@Column(name="STOCK_NAME")
 	private String name;
 
@@ -64,6 +78,14 @@ public class PortfolioStocks {
 
 	public void setLstUpdDate(Date lstUpdDate) {
 		this.lstUpdDate = lstUpdDate;
+	}
+
+	public Long getStockId() {
+		return stockId;
+	}
+
+	public void setStockId(Long stockId) {
+		this.stockId = stockId;
 	}
 
 }

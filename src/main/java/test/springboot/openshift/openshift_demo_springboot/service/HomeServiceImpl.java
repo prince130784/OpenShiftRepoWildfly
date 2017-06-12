@@ -7,8 +7,7 @@ import test.springboot.openshift.openshift_demo_springboot.dao.HomeRepo;
 
 @Service
 public class HomeServiceImpl implements HomeService {
-	@Autowired
-	private HomeRepo homeRepo;
+	
 	/*
 	 * this method gets the market value for each stock, sums it up and returns
 	 * the total value of the portfolio.

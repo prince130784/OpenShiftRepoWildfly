@@ -6,6 +6,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
@@ -14,6 +16,7 @@ import javax.persistence.JoinColumn;
 public class Portfolio {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="PORTFOLIO_ID")
 	private Long portfolioId;
 	
@@ -23,9 +26,9 @@ public class Portfolio {
 	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="portfolio", cascade=CascadeType.PERSIST)
 	private Set<PortfolioStocks> stocks;*/
 
-	@ElementCollection
-	@CollectionTable(name="TBL_PORTFOLIO_STOCKS",  joinColumns=@JoinColumn(referencedColumnName="portfolioId"))
-	private Set<PortfolioStocks> portfolioStocks;
+	/*@ElementCollection
+	@CollectionTable(name="TBL_PORTFOLIO_STOCKS",  joinColumns=@JoinColumn(referencedColumnName="PORTFOLIO_ID"))
+	private Set<PortfolioStocks> portfolioStocks;*/
 	
 	public String getName() {
 		return name;

@@ -50,6 +50,7 @@
 			</activation>
 			<properties>
 				<packaging.type>war</packaging.type>
+				<activatedProperties>Openshift</activatedProperties>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -74,6 +75,12 @@
 				</dependency>
 			</dependencies>
 			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
 				<plugins>
 					<!-- <plugin> <groupId>pl.project13.maven</groupId> <artifactId>git-commit-id-plugin</artifactId> 
 						</plugin> // Add the .git properties file in the target folder containing 
@@ -83,10 +90,8 @@
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-maven-plugin</artifactId>
 						<configuration>
-							<!-- <jvmArguments>
-								-Xdebug
-								-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
-							</jvmArguments> -->
+							<!-- <jvmArguments> -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 
+								</jvmArguments> -->
 							<mainClass>${start-class}</mainClass>
 							<layout>WAR</layout>
 							<classifier>exec</classifier> <!--//Executable WAR, to denote that this artifact cannot be use as dependency 
@@ -120,6 +125,7 @@
 			</activation>
 			<properties>
 				<packaging.type>jar</packaging.type>
+				<activatedProperties>DEV</activatedProperties>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -145,6 +151,14 @@
 
 			<build>
 				<defaultGoal>run</defaultGoal>
+
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+
 				<!-- <pluginManagement> -->
 				<plugins>
 					<!-- <plugin> <groupId>pl.project13.maven</groupId> <artifactId>git-commit-id-plugin</artifactId> 
@@ -154,10 +168,9 @@
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-maven-plugin</artifactId>
 						<configuration>
-							
-							<!-- <jvmArguments> -Xdebug
-								-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
-							</jvmArguments> -->
+
+							<!-- <jvmArguments> -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 
+								</jvmArguments> -->
 							<mainClass>${start-class}</mainClass>
 							<layout>JAR</layout>
 							<classifier>exec</classifier>
